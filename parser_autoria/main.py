@@ -7,11 +7,12 @@
 import os
 import sys
 import subprocess
+
 import requests
 import csv
 
 from bs4 import BeautifulSoup
-
+from multiprocessing.dummy import Pool as ThreadPool
 
 URL = str()
 ALL_MODELS_URL = 'https://auto.ria.com/uk/newauto/catalog/'
@@ -70,13 +71,14 @@ def parse() -> list:
     html = get_html(URL)
     if html.status_code == 200:
         pages = get_pages_count(html.text)
-        for page in range(1, pages + 1):
-            print(f'Parsing page {page} from {pages}...')
-            html = get_html(URL, params={'page': page})
-            all_cars.extend(get_content(html.text))
+        links = list(f'{URL}?page={page}' for page in range(1, pages + 1))
+        pool = ThreadPool(pages)
+        pool.map(lambda link: all_cars.extend(get_content(get_html(link).text)), links)
+        pool.close()
+        pool.join()
         print(f'We have got {len(all_cars)} cars.')
     else:
-        print('Error')
+        print('Page not found')
     return all_cars
 
 
