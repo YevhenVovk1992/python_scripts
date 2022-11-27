@@ -1,0 +1,64 @@
+class StackObj:
+    def __init__(self, data: str):
+        self.data = data
+        self.next = None
+
+
+class Stack:
+    def __init__(self, top=None):
+        self.__count_obj = 0
+        self.top = top
+        self.list = []
+
+    def push(self, obj):
+        last = self[self.__count_obj - 1] if self.__count_obj > 0 else None
+        if last:
+            last.next = obj
+        if self.top is None:
+            self.top = obj
+        self.__count_obj += 1
+
+    def pop(self):
+        if self.__count_obj == 0:
+            return None
+        laster = self[self.__count_obj - 2] if self.__count_obj > 1 else self[self.__count_obj - 1]
+        last = self[self.__count_obj -1]
+        if self.__count_obj == 1:
+            self.top = 0
+        else:
+            laster.next = None
+        self.__count_obj -= 1
+        return last
+
+    def check_indx(self, x):
+        if type(x) != int or x < 0:
+            raise IndexError('неверный индекс')
+        if x >= self.__count_obj:
+            raise IndexError('неверный индекс')
+        return True
+
+    def __getitem__(self, item):
+        if self.check_indx(item):
+            conut = 0
+            top = self.top
+            while top and conut < item:
+                top = top.next
+                conut += 1
+            return top
+
+    def __setitem__(self, key, value):
+        if self.check_indx(key):
+            obj = self[key]
+            prev = self[key - 1] if key > 0 else None
+            value.next = obj.next
+            if prev:
+                prev.next = value
+
+st = Stack()
+st.push(StackObj("obj1"))
+st.push(StackObj("obj2"))
+st.push(StackObj("obj3"))
+st[1] = StackObj("new obj2")
+print(st[2].data) # obj3
+print(st[1].data) # new obj2
+res = st[3] # исключение IndexError
