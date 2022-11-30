@@ -1,0 +1,76 @@
+def arithmetic_arranger(problems, get_result=False):
+    operation_list = ['+', '-']
+    str1 = str0 = str3 = str4 = ''
+    loop_str_top = loop_str_operation = loop_str_down = loop_calculation = ''
+    to_str0 = to_str1 = to_str4 = ''
+    calculation = None
+    len_str = dict()
+    if len(problems) > 5:
+        return 'Error: Too many problems.'
+    for operation in problems:
+        top = operation.split()[0]
+        down = operation.split()[2]
+        symbol = operation.split()[1]
+        if symbol not in operation_list:
+            return "Error: Operator must be '+' or '-'."
+        elif not top.isdigit() or not down.isdigit():
+            return 'Error: Numbers must only contain digits.'
+        elif len(top) > 4 or len(down) > 4:
+            return 'Error: Numbers cannot be more than four digits.'
+        if get_result is True:
+            calculation = int(top) - int(down) if symbol == '-' else int(top) + int(down)
+
+        if len(top) > len(down):
+            len_str['top'] = len(top) + 2
+        elif len(top) < len(down):
+            len_str['down'] = len(down) + 2
+        else:
+            len_str['eq'] = len(top) + 2
+
+        if 'top' in len_str:
+            for i in range(len_str['top'] - len(top)):
+                to_str0 += ' '
+            for y in range(len_str['top'] - len(down) - 1):
+                to_str1 += ' '
+            for o in range(len_str['top']):
+                str3 += '-'
+            if calculation:
+                for a in range(len_str['top'] - len(str(calculation))):
+                    to_str4 += ' '
+        elif 'down' in len_str:
+            for i in range(len_str['down'] - len(top)):
+                to_str0 += ' '
+            for y in range(len_str['down'] - len(down) - 1):
+                to_str1 += ' '
+            for o in range(len_str['down']):
+                str3 += '-'
+            if calculation:
+                for a in range(len_str['down'] - len(str(calculation))):
+                    to_str4 += ' '
+        else:
+            for i in range(len_str['eq'] - len(top)):
+                to_str0 += ' '
+            for y in range(len_str['eq'] - len(down) - 1):
+                to_str1 += ' '
+            for o in range(len_str['eq']):
+                str3 += '-'
+            if calculation:
+                for a in range(len_str['eq'] - len(str(calculation))):
+                    to_str4 += ' '
+        str0 = to_str0 + top + '    '
+        str1 = operation.split()[1] + to_str1 + down + '    '
+        str3 += '    '
+        if calculation:
+            str4 = to_str4 + str(calculation) + '    '
+        loop_str_top += str0
+        loop_str_operation += str1
+        loop_str_down += str3
+        if calculation:
+            loop_calculation += str4
+        len_str = dict()
+        to_str0 = to_str1 = str3 = to_str4 = ''
+    if loop_calculation:
+        arranged_problems = loop_str_top.rstrip() + '\n' + loop_str_operation.rstrip() + '\n' + loop_str_down.rstrip() + '\n' + loop_calculation.rstrip()
+    else:
+        arranged_problems = loop_str_top.rstrip() + '\n' + loop_str_operation.rstrip() + '\n' + loop_str_down.rstrip()
+    return arranged_problems
