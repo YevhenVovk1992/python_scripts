@@ -1,0 +1,29 @@
+def get_distance_between_zipcodes(zip1: str, zip_list: list) -> list:
+    """
+    Gets the highway distance between two US ZIP codes using the Google Maps API.
+    :param zip1: Start ZIP.
+    :param zip_list: List of finish ZIPs.
+    :return: List of distances in miles.
+    """
+    dest = map(lambda x: str(x[0]), zip_list)
+    result = []
+    gmaps = googlemaps.Client(key=api_key)
+    try:
+        response = gmaps.distance_matrix(origins=zip1,
+                                         destinations=list(dest),
+                                         mode="driving",
+                                         units="imperial")
+        if response["status"] == "OK":
+            distance_info = response["rows"][0]["elements"]
+            for i, point in enumerate(distance_info):
+                if point['status'] == 'OK':
+                    distance_miles = point['distance']['value'] / 1609.34
+                    end_point = zip_list[i][1]
+                    result.append((distance_miles, end_point))
+                elif point["status"] == "ZERO_RESULTS":
+                    continue
+        else:
+            raise ValueError(f"API error: {response['status']}")
+    except Exception as e:
+        return [f"Get distance error {str(e)}"]
+    return result
