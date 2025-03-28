@@ -13,6 +13,7 @@ async def main():
     :return: None
     """
     #Get the configparser object
+    
     config_object = ConfigParser()
     config_ini_path = os.path.join(os.path.dirname(__file__), 'config.ini')
     if not os.path.exists(config_ini_path):
