@@ -1,0 +1,67 @@
+import numpy as np
+import pandas as pd
+
+
+holding_df = pd.read_excel(open('2025-05-09 - Aberdeen Export Example.xlsx','rb')).replace({np.nan: None})
+reference_table = {'reference_spreadsheet': {'ISIN': {'0': 'IE00BPT2BQ43', '1': 'IE00BPT2BZ34', '2': 'IE00B3PVQJ91', '3': 'IE00B2PC0930', '4': 'GB00BPN5NY15', '5': 'GB00B7C44X99', '6': 'GB00BG0QP489', '7': 'IE00BPT2BD14', '8': None, '9': None, '10': None, '11': 'Fixed Income', '12': 'Equity', '13': None, '14': None, '15': 'Nicki Hinton-Jones', '16': 'Laurentius vd Worm'}, 'BNP000': {'0': 0.3333, '1': 0.3333, '2': 0.3334, '3': 0, '4': 0, '5': 0, '6': 0, '7': 0, '8': None, '9': 1, '10': None, '11': 1, '12': 0, '13': None, '14': None, '15': None, '16': None}, 'BNP010': {'0': 0.3, '1': 0.3, '2': 0.3, '3': 0.0339, '4': 0.0386, '5': 0.0025, '6': 0.02, '7': 0.005, '8': None, '9': 0.9999999999999999, '10': None, '11': 0.8999999999999999, '12': 0.10000000000000002, '13': None, '14': None, '15': None, '16': None}, 'BNP020': {'0': 0.2667, '1': 0.2667, '2': 0.2666, '3': 0.0678, '4': 0.0772, '5': 0.005, '6': 0.04, '7': 0.01, '8': None, '9': 1, '10': None, '11': 0.8, '12': 0.20000000000000004, '13': None, '14': None, '15': None, '16': None}, 'BNP030': {'0': 0.2333, '1': 0.2333, '2': 0.2334, '3': 0.1017, '4': 0.1158, '5': 0.0075, '6': 0.06, '7': 0.015, '8': None, '9': 0.9999999999999999, '10': None, '11': 0.7, '12': 0.30000000000000004, '13': None, '14': None, '15': None, '16': None}, 'BNP040': {'0': 0.2, '1': 0.2, '2': 0.2, '3': 0.1356, '4': 0.1544, '5': 0.01, '6': 0.08, '7': 0.02, '8': None, '9': 1, '10': None, '11': 0.6000000000000001, '12': 0.4000000000000001, '13': None, '14': None, '15': None, '16': None}, 'BNP050': {'0': 0.1667, '1': 0.1667, '2': 0.1666, '3': 0.1695, '4': 0.193, '5': 0.0125, '6': 0.1, '7': 0.025, '8': None, '9': 1, '10': None, '11': 0.5, '12': 0.5000000000000001, '13': None, '14': None, '15': None, '16': None}, 'BNP060': {'0': 0.1333, '1': 0.1333, '2': 0.1334, '3': 0.2034, '4': 0.2316, '5': 0.015, '6': 0.12, '7': 0.03, '8': None, '9': 1, '10': None, '11': 0.4, '12': 0.6000000000000001, '13': None, '14': None, '15': None, '16': None}, 'BNP070': {'0': 0.1, '1': 0.1, '2': 0.1, '3': 0.2373, '4': 0.2702, '5': 0.0175, '6': 0.14, '7': 0.035, '8': None, '9': 1, '10': None, '11': 0.30000000000000004, '12': 0.7000000000000001, '13': None, '14': None, '15': None, '16': None}, 'BNP080': {'0': 0.0667, '1': 0.0667, '2': 0.0666, '3': 0.2712, '4': 0.3088, '5': 0.02, '6': 0.16, '7': 0.04, '8': None, '9': 1, '10': None, '11': 0.2, '12': 0.8000000000000002, '13': None, '14': None, '15': None, '16': None}, 'BNP090': {'0': 0.0333, '1': 0.0334, '2': 0.0333, '3': 0.3051, '4': 0.3474, '5': 0.0225, '6': 0.18, '7': 0.045, '8': None, '9': 0.9999999999999999, '10': None, '11': 0.1, '12': 0.9, '13': None, '14': None, '15': None, '16': None}, 'BNP100': {'0': 0, '1': 0, '2': 0, '3': 0.339, '4': 0.386, '5': 0.025, '6': 0.2, '7': 0.05, '8': None, '9': 1.0000000000000002, '10': None, '11': 0, '12': 1.0000000000000002, '13': None, '14': None, '15': None, '16': None}}, 'reference_spreadsheet_2_cash': {'ISIN': {'0': 'IE00BPT2BQ43', '1': 'IE00BPT2BZ34', '2': 'IE00B3PVQJ91', '3': 'IE00B2PC0930', '4': 'GB00BPN5NY15', '5': 'GB00B7C44X99', '6': 'GB00BG0QP489', '7': 'IE00BPT2BD14', '8': None, '9': None, '10': None, '11': None, '12': 'Fixed Income', '13': 'Equity', '14': None, '15': None, '16': None, '17': 'Nicki Hinton-Jones', '18': 'Laurentius vd Worm'}, 'Unnamed: 2': {'0': 'BPT2BQ4', '1': 'BPT2BZ3', '2': 'B3PVQJ9', '3': 'B2PC093', '4': 'BPN5NY1', '5': 'B7C44X9', '6': 'BG0QP48', '7': 'BPT2BD1', '8': None, '9': None, '10': None, '11': None, '12': None, '13': None, '14': None, '15': None, '16': None, '17': None, '18': None}, 'BNC000': {'0': 0.3266, '1': 0.3267, '2': 0.3267, '3': 0, '4': 0, '5': 0, '6': 0, '7': 0, '8': 0.02, '9': None, '10': 1, '11': None, '12': 0.98, '13': 0, '14': None, '15': None, '16': None, '17': None, '18': '2024-12-09T00:00:00'}, 'BNC010': {'0': 0.2933, '1': 0.2933, '2': 0.2934, '3': 0.0339, '4': 0.0386, '5': 0.0025, '6': 0.02, '7': 0.005, '8': 0.02, '9': None, '10': 1, '11': None, '12': 0.88, '13': 0.10000000000000002, '14': None, '15': None, '16': None, '17': None, '18': None}, 'BNC020': {'0': 0.26, '1': 0.26, '2': 0.26, '3': 0.0678, '4': 0.0772, '5': 0.005, '6': 0.04, '7': 0.01, '8': 0.02, '9': None, '10': 1, '11': None, '12': 0.78, '13': 0.20000000000000004, '14': None, '15': None, '16': None, '17': None, '18': None}, 'BNC030': {'0': 0.2267, '1': 0.2267, '2': 0.2266, '3': 0.1017, '4': 0.1158, '5': 0.0075, '6': 0.06, '7': 0.015, '8': 0.02, '9': None, '10': 1, '11': None, '12': 0.68, '13': 0.30000000000000004, '14': None, '15': None, '16': None, '17': None, '18': None}, 'BNC040': {'0': 0.1933, '1': 0.1933, '2': 0.1934, '3': 0.1356, '4': 0.1544, '5': 0.01, '6': 0.08, '7': 0.02, '8': 0.02, '9': None, '10': 1, '11': None, '12': 0.58, '13': 0.4000000000000001, '14': None, '15': None, '16': None, '17': None, '18': None}, 'BNC050': {'0': 0.16, '1': 0.16, '2': 0.16, '3': 0.1695, '4': 0.193, '5': 0.0125, '6': 0.1, '7': 0.025, '8': 0.02, '9': None, '10': 1, '11': None, '12': 0.48, '13': 0.5000000000000001, '14': None, '15': None, '16': None, '17': None, '18': None}, 'BNC060': {'0': 0.1267, '1': 0.1267, '2': 0.1266, '3': 0.2034, '4': 0.2316, '5': 0.015, '6': 0.12, '7': 0.03, '8': 0.02, '9': None, '10': 1, '11': None, '12': 0.38, '13': 0.6000000000000001, '14': None, '15': None, '16': None, '17': None, '18': None}, 'BNC070': {'0': 0.0933, '1': 0.0933, '2': 0.0934, '3': 0.2373, '4': 0.2702, '5': 0.0175, '6': 0.14, '7': 0.035, '8': 0.02, '9': None, '10': 1, '11': None, '12': 0.27999999999999997, '13': 0.7000000000000001, '14': None, '15': None, '16': None, '17': None, '18': None}, 'BNC080': {'0': 0.06, '1': 0.06, '2': 0.06, '3': 0.2712, '4': 0.3088, '5': 0.02, '6': 0.16, '7': 0.04, '8': 0.02, '9': None, '10': 1, '11': None, '12': 0.18, '13': 0.8000000000000002, '14': None, '15': None, '16': None, '17': None, '18': None}, 'BNC090': {'0': 0.0267, '1': 0.0267, '2': 0.0266, '3': 0.3051, '4': 0.3474, '5': 0.0225, '6': 0.18, '7': 0.045, '8': 0.02, '9': None, '10': 0.9999999999999999, '11': None, '12': 0.08, '13': 0.9, '14': None, '15': None, '16': None, '17': None, '18': None}, 'Unnamed: 14': {'0': None, '1': None, '2': None, '3': None, '4': None, '5': None, '6': None, '7': None, '8': None, '9': None, '10': None, '11': None, '12': None, '13': None, '14': None, '15': None, '16': None, '17': None, '18': None}, 'BNC100': {'0': 0, '1': 0, '2': 0, '3': 0.3322, '4': 0.3783, '5': 0.0245, '6': 0.196, '7': 0.049, '8': 0.02, '9': None, '10': 1, '11': None, '12': 0, '13': 0.9800000000000001, '14': None, '15': None, '16': None, '17': None, '18': None}}}
+
+three_rows = {'MASTER ALLOCATION': {}, 'RAW DIFFERENCE': {}, "PERCENTAGE OF DIFFERENCE": {}}
+update_columns = []
+account_total_value = {}
+
+HOLDING_MODEL_COL = 'Model Portfolio Name'
+HOLDING_ISIN_COL = 'ISIN'
+HOLDING_OPERATIONS_VALUES = 'Value ()'
+HOLDING_ACCOUNT_NUMBER = 'Account Number'
+portfolio = 'Timeline Classic'
+
+reference_df = pd.DataFrame(reference_table['reference_spreadsheet'])
+
+for col, series in holding_df.items():
+
+    # Calculate the sum of all account transactions
+    if col == HOLDING_ACCOUNT_NUMBER:
+        for i, account_number in series.items():
+            account_value = holding_df[HOLDING_OPERATIONS_VALUES].iloc[int(i)]
+            if account_number in account_total_value:
+                account_total_value[account_number] += account_value
+            else:
+                account_total_value[account_number] = account_value
+
+    # find rows with true account model
+    if col == HOLDING_MODEL_COL:
+        for i, model in series.items():
+            if model and portfolio in model:
+                update_columns.append(i)
+                three_rows['MASTER ALLOCATION'][i] = 'no_reference_isin'
+
+    # fill in the positions of the frame, where the isin code is the same as in the reference table
+    if col == HOLDING_ISIN_COL:
+        for i, code in series.items():
+            if all([
+                code,
+                code in reference_df.values,
+                i in update_columns
+            ]):
+                # Get col and row of the master allocation value
+                range_value = holding_df[HOLDING_MODEL_COL].iloc[int(i)].strip().split(' ')[-1]
+                range_column = [i for i in reference_df.keys() if range_value in i]
+                master_row = np.where(reference_df == code)[0][0]
+                master_value = float(reference_df[range_column[0]].iloc[master_row] * 100)
+
+                # Calculation the holding allocation and differences
+                account_number = holding_df[HOLDING_ACCOUNT_NUMBER].iloc[int(i)]
+                holding_allocation = (holding_df[HOLDING_OPERATIONS_VALUES].iloc[int(i)] / account_total_value[
+                    account_number]) * 100
+                raw_difference = holding_allocation - master_value
+                three_rows['MASTER ALLOCATION'][i] = master_value
+                three_rows['RAW DIFFERENCE'][i] = round(raw_difference, 2)
+                if master_value == 0:
+                    three_rows['PERCENTAGE OF DIFFERENCE'][i] = None
+                else:
+                    three_rows['PERCENTAGE OF DIFFERENCE'][i] = round(abs(raw_difference / master_value) * 100, 2)
+
+
+t = pd.DataFrame(three_rows)
+finish_file = pd.concat([holding_df, t], axis=1)
+finish_file.to_excel('aberdeen.xlsx')
