@@ -1,0 +1,16 @@
+import json
+from chardet.universaldetector import UniversalDetector
+
+detector = UniversalDetector()
+
+file = 'wheremi.json'
+
+for line in open(file, 'rb'):
+    detector.feed(line)
+    if detector.done: break
+    detector.close()
+
+
+with open(file, encoding=detector.result['encoding']) as f:
+    recipes = json.load(f)
+print(recipes['country'])
